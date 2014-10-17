@@ -706,7 +706,8 @@ func rpcRawCommand(user string, password string, server string,
 		return result, err
 	}
 	if resp.StatusCode != http.StatusOK {
-		return nil, BadStatusCode(resp.StatusCode)
+	// -hlandau
+  //	return nil, BadStatusCode(resp.StatusCode)
 	}
 	result, err = GetRaw(resp.Body)
 	if err != nil {
