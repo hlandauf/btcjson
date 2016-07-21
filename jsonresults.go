@@ -451,10 +451,11 @@ func ReadResultCmd(cmd string, message []byte) (Reply, error) {
 	var jsonErr Error
 	var id interface{}
 	err = json.Unmarshal(objmap["error"], &jsonErr)
-	if err != nil {
-		err = fmt.Errorf("error unmarshalling json reply: %v", err)
-		return result, err
-	}
+	// Removed by Jeremy because it freaks out when "error" is missing, even though the JSON-RPC 2.0 spec says it should be missing.
+	//if err != nil {
+	//	err = fmt.Errorf("error unmarshalling json reply: %v", err)
+	//	return result, err
+	//}
 	err = json.Unmarshal(objmap["id"], &id)
 	if err != nil {
 		err = fmt.Errorf("error unmarshalling json reply: %v", err)
